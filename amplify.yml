@@ -1,0 +1,41 @@
+version: 1
+applications:
+  - appRoot: packages/app1
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - yarn set version 3.2.1
+            - yarn config set nodeLinker node-modules
+            - yarn install
+        build:
+          commands:
+            - echo "API_ENDPOINT=https://dummyapi.io/data/v1/" >> .env
+            - SKIP_PREFLIGHT_CHECK=true yarn build
+      artifacts:
+        baseDirectory: .next
+        files:
+          - "**/*"
+      cache:
+        paths:
+          - "../../.yarn/cache/**/*" # Cache `yarn` for faster `yarn install`
+          - ".next/cache/**/*" # Cache Next.js for faster application rebuilds
+  - appRoot: packages/app2
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - yarn set version 3.2.1
+            - yarn config set nodeLinker node-modules
+            - yarn install
+        build:
+          commands:
+            - SKIP_PREFLIGHT_CHECK=true yarn build
+      artifacts:
+        baseDirectory: .next
+        files:
+          - "**/*"
+      cache:
+        paths:
+          - "../../.yarn/cache/**/*" # Cache `node_modules` for faster `yarn` or `npm i`
+          - ".next/cache/**/*" # Cache Next.js for faster application rebuilds

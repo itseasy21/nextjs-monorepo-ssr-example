@@ -1,0 +1,8 @@
+{
+  "name": "nextjs-monorepo-ssr-example",
+  "private": true,
+  "packageManager": "yarn@3.2.1",
+  "workspaces": [
+    "packages/*"
+  ]
+}

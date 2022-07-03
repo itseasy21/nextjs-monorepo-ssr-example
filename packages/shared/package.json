@@ -1,0 +1,27 @@
+{
+  "name": "shared",
+  "version": "0.0.1",
+  "main": "dist/cjm/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@types/node": "18.0.0",
+    "@types/react": "18.0.14",
+    "@types/react-dom": "18.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.22.0",
+    "@typescript-eslint/parser": "^5.28.0",
+    "eslint": "8.19.0",
+    "lint-staged": "^13.0.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "tslib": "^2.3.1",
+    "typescript": "4.7.4"
+  },
+  "scripts": {
+    "build": "yarn run prebuild && tsc --module commonjs --outDir dist/cjs && tsc",
+    "prebuild": "rm -rf ./dist",
+    "postinstall": "yarn run build"
+  }
+}
